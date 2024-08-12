@@ -63,5 +63,5 @@ jobs:
         kubectl apply --dry-run=client -f k8s/deployments/wisecow-deployment.yaml
         kubectl apply --dry-run=client -f k8s/services/wisecow-service.yaml
 
-    -
+    
 
