@@ -29,11 +29,11 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t 008971675564.dkr.ecr.us-east-1.amazonaws.com/accuknox/wisecow-app:latest .
+        docker build -t 008971675564.dkr.ecr.us-east-1.amazonaws.com/accuknox:latest .
 
     - name: Push Docker Image to ECR
       run: |
-        docker push 008971675564.dkr.ecr.us-east-1.amazonaws.com/accuknox/wisecow-app:latest
+        docker push 008971675564.dkr.ecr.us-east-1.amazonaws.com/accuknox:latest
 
   deploy:
     runs-on: ubuntu-latest
