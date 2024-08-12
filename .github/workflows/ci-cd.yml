@@ -21,7 +21,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1 # Update to your desired AWS region
+        aws-region: us-east-1
 
     - name: Log in to ECR
       run: |
@@ -57,11 +57,17 @@ jobs:
     - name: Update kubeconfig for EKS
       run: |
         aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
+        kubectl config current-context # Verify current context
 
-    - name: Validate Kubernetes YAML Files
+    - name: Apply Kubernetes YAML Files
       run: |
-        kubectl apply --dry-run=client -f k8s/deployments/wisecow-deployment.yaml
-        kubectl apply --dry-run=client -f k8s/services/wisecow-service.yaml
+        kubectl apply -f k8s/deployments/wisecow-deployment.yaml
+        kubectl apply -f k8s/services/wisecow-service.yaml
+
+    - name: Check Deployment Status
+      run: |
+        kubectl rollout status deployment/wisecow-deployment
+        kubectl get pods
 
     
 
