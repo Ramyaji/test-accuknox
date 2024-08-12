@@ -25,15 +25,15 @@ jobs:
 
     - name: Log in to ECR
       run: |
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${008971675564.dkr.ecr.us-east-1.amazonaws.com/accuknox}
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 008971675564.dkr.ecr.us-east-1.amazonaws.com
 
     - name: Build Docker Image
       run: |
-        docker build -t ${008971675564.dkr.ecr.us-east-1.amazonaws.com/accuknox}/wisecow-app:latest .
+        docker build -t 008971675564.dkr.ecr.us-east-1.amazonaws.com/accuknox/wisecow-app:latest .
 
     - name: Push Docker Image to ECR
       run: |
-        docker push ${008971675564.dkr.ecr.us-east-1.amazonaws.com/accuknox}/wisecow-app:latest
+        docker push 008971675564.dkr.ecr.us-east-1.amazonaws.com/accuknox/wisecow-app:latest
 
   deploy:
     runs-on: ubuntu-latest
