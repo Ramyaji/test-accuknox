@@ -61,13 +61,13 @@ jobs:
 
   - name: Validate Kubernetes YAML Files
     run: |
-      kubectl apply --dry-run=client -f k8s/wisecow-deployment.yaml
-      kubectl apply --dry-run=client -f k8s/wisecow-service.yaml
+      kubectl apply --dry-run=client -f /home/ubuntu/test/test-accuknox/k8s/deployments/wisecow-deployment.yaml
+      kubectl apply --dry-run=client -f /home/ubuntu/test/test-accuknox/k8s/services/wisecow-service.yaml
 
   - name: Deploy to Kubernetes
     run: |
-      kubectl apply -f k8s/wisecow-deployment.yaml
-      kubectl apply -f k8s/wisecow-service.yaml
+      kubectl apply -f /home/ubuntu/test/test-accuknox/k8s/deployments/wisecow-deployment.yaml
+      kubectl apply -f /home/ubuntu/test/test-accuknox/k8s/services/wisecow-service.yaml
 
   - name: Check Deployment Status
     run: |
