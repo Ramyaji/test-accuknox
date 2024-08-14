@@ -59,6 +59,11 @@ jobs:
         aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
         kubectl config current-context # Verify current context
 
+    - name: Apply commands
+      run: |
+         kubectl get po -A
+
+
     - name: Apply Kubernetes YAML Files
       run: |
         kubectl apply -f /home/ubuntu/test/test-accuknox/k8s/deployments/wisecow-deployment.yaml
